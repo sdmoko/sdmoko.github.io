@@ -32,6 +32,7 @@ short_bio: >
 permalink: /:title.html
 # Comments are powered by disqus
 comments: true
+disqus_username: sdmoko
 
 # keep about_stub roughly 12 words long for best results
 # This will show up at the bottom of each post
