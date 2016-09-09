@@ -1,0 +1,184 @@
+---
+layout: post
+title: Wget Aplikasi Pengunduh Berkas
+date: 2015-02-10 19:25:37.000000000 +07:00
+type: post
+published: true
+status: publish
+categories:
+- GNU/Linux
+tags:
+- Bash
+- Download
+meta:
+  _edit_last: '14518453'
+  geo_public: '0'
+  _publicize_pending: '1'
+  publicize_facebook_url: https://facebook.com/10203911760374174
+  _wpas_done_8421200: '1'
+  _publicize_done_external: a:1:{s:8:"facebook";a:1:{i:1226493098;b:1;}}
+  publicize_google_plus_url: https://plus.google.com/105130848392982899593/posts/BBk8SKZyFwW
+  _wpas_done_8421205: '1'
+  publicize_twitter_user: sdmoko
+  publicize_twitter_url: http://t.co/skl4A7kqn7
+  _wpas_done_424287: '1'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=373331178&stype=M&topic=5970890146273316864&type=U&a=YDe_
+  _wpas_done_10298656: '1'
+  publicize_path_id: 54d9f8c911d7de5d5eb7c356
+  _wpas_done_10298670: '1'
+  _wpas_skip_8421200: '1'
+  _wpas_skip_8421205: '1'
+  _wpas_skip_424287: '1'
+  _wpas_skip_10298656: '1'
+  _wpas_skip_10298670: '1'
+  _oembed_91e63610c075696411abb4f471c175d1: "{{unknown}}"
+author:
+  login: syahdwi
+  email: syahdwi92@gmail.com
+  display_name: Moko
+  first_name: ''
+  last_name: ''
+---
+<p><strong>Wget</strong> merupakan salah satu program untuk mengunduh berkas terbaik yang pernah ada. Wget bisa menghandle banyak situasi seperti mengunduh file besar, rekursif, unduh berbarengan, dll.</p>
+<p>Nah, sekarang saya mau berbagi tips unduh menggunakan wget. Oke kita mulai yah. :)</p>
+<p><strong>1. Unduh satu berkas dengan Wget</strong></p>
+<p>Contoh berikut ini merupakan cara unduh satu berkas dengan wget.<!--more--></p>
+<pre>$ wget http://kambing.ui.ac.id/iso/ubuntu/releases/14.04/ubuntu-14.04-server-amd64.iso</pre>
+<p>Ketika proses ini berjalan maka akan menampilkan beberapa informasi, seperti :</p>
+<ul>
+<li>persentase unduh berkas (contoh 1% seperti di bawah)</li>
+<li>jumlah bytes yang telah diunduh sejauh ini (contoh 9,139,744 bytes di bawah)</li>
+<li>kecepatan unduh sekarang (contoh 122KB/s di bawah)</li>
+<li>estimasi sisa waktu unduh (contoh 67m 4s di bawah)</li>
+</ul>
+<pre>moko@azkaban:~$ wget http://kambing.ui.ac.id/iso/ubuntu/releases/14.04/ubuntu-14.04-server-amd64.iso
+--2015-02-10 21:57:37-- http://kambing.ui.ac.id/iso/ubuntu/releases/14.04/ubuntu-14.04-server-amd64.iso
+Resolving kambing.ui.ac.id (kambing.ui.ac.id)... 152.118.24.30, 2403:da00:1:3::1e
+Connecting to kambing.ui.ac.id (kambing.ui.ac.id)|152.118.24.30|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 591396864 (564M) [application/octet-stream]
+Saving to: 'ubuntu-14.04-server-amd64.iso'
+
+1% [ ] 9,139,744 122KB/s eta 67m 4s</pre>
+<p>&nbsp;</p>
+<p><strong>2. Unduh dan Simpan Berkas dengan Nama Lain menggunakan wget -O</strong></p>
+<p>Secara <em>default </em>wget akan memilih nama berkas dari kata terakhir setelah slash (/) yang dimana terkadang tidak sesuai.</p>
+<p><strong>Salah</strong> : contoh wget akan mengunduh dan menyimpan berkas dengan nama download_script.php?src_id=7701</p>
+<pre>$ wget http://www.vim.org/scripts/download_script.php?src_id=7701</pre>
+<p>Meskipun berkas yang diunduh merupakan berkas zip, akan disimpan sebagai berikut.</p>
+<pre>$ ls
+download_script.php?src_id=7701</pre>
+<p><strong>Benar</strong> : berikut contoh yang benar menggunakan opsi -O</p>
+<pre>$ wget -O taglist.zip http://www.vim.org/scripts/download_script.php?src_id=7701</pre>
+<p>&nbsp;</p>
+<p><strong>3. Unduh dengan Membatasi Kecepatan Unduh Berkas</strong></p>
+<p>Saat menjalankan wget, secara <em>default</em> wget akan mengunduh dengan menggunakan seluruh <em>bandwith</em>. Hal ini tidak boleh dilakukan jika dijalankan pada mesin <em>server</em> produksi. Oleh karena itu butuh dilakukan pembatasan pada kecepatan unduh.</p>
+<pre>$ wget --limit-rate=200k http://www.openss7.org/repos/tarballs/strx25-0.9.2.1.tar.bz2</pre>
+<p>&nbsp;</p>
+<p>4<strong>. Meneruskan Proses Unduh yang Gagal</strong></p>
+<p>Pada saat mengunduh berkas yang besar mungkin saja terjadi kegagalan, tapi itu bisa diteruskan dengan wget.</p>
+<pre>$ wget -c http://www.openss7.org/repos/tarballs/strx25-0.9.2.1.tar.bz2</pre>
+<p>&nbsp;</p>
+<p><strong>5. Menjalankan Proses Unduh di <em>Background</em> Menggunakan wget -b</strong></p>
+<p>Untuk unduh yang besar, jalankan proses unduh di background menggunakan wget opsi -b seperti di bawah.</p>
+<pre>$ wget -b http://www.openss7.org/repos/tarballs/strx25-0.9.2.1.tar.bz2
+Continuing in background, pid 1984.
+Output will be written to `wget-log'.</pre>
+<p>Itu akan menjalankan proses unduh dan kita tetap bisa mengecek progres unduh dengan menggunakan tail -f seperti di bawah.</p>
+<pre>$ tail -f wget-log
+Saving to: `strx25-0.9.2.1.tar.bz2.4'
+
+     0K .......... .......... .......... .......... ..........  1% 65.5K 57s
+    50K .......... .......... .......... .......... ..........  2% 85.9K 49s
+   100K .......... .......... .......... .......... ..........  3% 83.3K 47s
+   150K .......... .......... .......... .......... ..........  5% 86.6K 45s
+   200K .......... .......... .......... .......... ..........  6% 33.9K 56s
+   250K .......... .......... .......... .......... ..........  7%  182M 46s
+   300K .......... .......... .......... .......... ..........  9% 57.9K 47s</pre>
+<p>&nbsp;</p>
+<p><strong>6. Menggunakan wget sebagai Mask User Agent dan Seperti <em>Browser</em> Menggunakan wget --user-agent</strong></p>
+<p>Beberapa website bisa menolak kita untuk mengunduh berkas dengan mengidentifikasi user agent yang bukan browser. Jadi kita bisa membuat seolah-olah wget berjalan sebagai user agent dengan menggunakan opsi -user-agent.</p>
+<pre>$ wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3" URL-TO-DOWNLOAD</pre>
+<p>&nbsp;</p>
+<p><strong>7. Uji URL Unduh dengan Menggunakan Using wget --spider</strong></p>
+<p>Ketika kita ingin menjalankan proses unduh berjadwal, kita harus memeriksa apakah proses unduh akan berjalan dengan baik atau tidak pada waktu yang dijadwalkan. Untuk mengujinya jalankan opsi --spider sebelum URL unduh berkas.</p>
+<pre>$ wget --spider DOWNLOAD-URL</pre>
+<p>Jika URL yang diberikan benar maka akan muncul seperti di bawah.</p>
+<pre>$ wget --spider download-url
+Spider mode enabled. Check if remote file exists.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+<strong>Remote file exists</strong> and could contain further links,
+but recursion is disabled -- not retrieving.</pre>
+<p>Ini akan menjamin proses unduh akan berjalan sukses pada jadwalnya. Tetapi, jika URL unduh salah maka akan menampilkan pesan.</p>
+<pre>$ wget --spider download-url
+Spider mode enabled. Check if remote file exists.
+HTTP request sent, awaiting response... 404 Not Found
+<strong>Remote file does not exist -- broken link!!!</strong></pre>
+<p>Kamu dapat menjalankan opsi spier dengan beberapa skenario:</p>
+<ul>
+<li>Uji sebelum proses unduh.</li>
+<li>Mengamati apakah<em> website</em> tersedia atau tidak pada beberapa rentang waktu.</li>
+<li>Memeriksa dari daftar halaman yang disimpan, dan mencari tahu apakah masih bisa diakses atau tidak.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>8. Menambahkan Jumlah Pengulangan Kesempatan Unduh dengan wget --tries</strong></p>
+<p>Jika koneksi internet bermasalah (baca: putus-putus), dan jika berkas yang di unduh besar dan ada kemungkinan gagal dalam proses unduh. Secara <em>default</em> wget mencoba pengulangan sampai 20 kali untuk membuat proses unduh berjalan sukses.</p>
+<p>Jika dibutuhkan, kita dapat menambahkan jumlah pengulangan menggunakan opsi --tries.</p>
+<pre>$ wget --tries=75 DOWNLOAD-URL</pre>
+<p>&nbsp;</p>
+<p><strong>9. Download Multiple Files / URLs Using Wget -i</strong></p>
+<p>Pertama, simpan semua URL berkas di dalam text file.</p>
+<pre>$ cat &gt; download-file-list.txt
+URL1
+URL2
+URL3
+URL4</pre>
+<p>Selanjutnya,  berikan download-file-list.txt sebagai argumen wget menggunakan opsi -i.</p>
+<pre>$ wget -i download-file-list.txt</pre>
+<p>&nbsp;</p>
+<p><strong>10. Unduh <em>Full</em> <em>Website</em> Menggunakan wget --mirror</strong></p>
+<p>Berikut ini perintah untuk mengunduh <em>full website</em> dan membuat bisa dilihat dari lokal.</p>
+<pre>$ wget --mirror -p --convert-links -P ./LOCAL-DIR WEBSITE-URL</pre>
+<ul>
+<li>--mirror : mengaktifkan opsi untuk <em>mirroring</em>.</li>
+<li>-p : unduh semua berkas yang dibutuhkan untuk menampilkan halaman HTML.</li>
+<li>–convert-links : setelah diunduh, ubah <em>links</em> di berkas untuk dilihat secara lokal.</li>
+<li>-P ./LOCAL-DIR : menyimpan semua berkas di dalam direktori tertentu.</li>
+</ul>
+<p>&nbsp;</p>
+<p><strong>11. Menolak Jenis Berkas ketika Unduh Menggunakan wget --reject</strong></p>
+<p>Kita menemukan <em>website</em> yang penting, namun kita tidak ingin mengunduh gambar bisa dilakukan seperti di bawah.</p>
+<pre>$ wget --reject=gif WEBSITE-TO-BE-DOWNLOADED</pre>
+<p>&nbsp;</p>
+<p><strong>12. Simpan Pesan Log ke berkas Log Spesifik Menggunakan wget -o</strong></p>
+<p>Ketika kita ingin log disimpan ke berkas log daripada di terminal.</p>
+<pre>$ wget -o download.log DOWNLOAD-URL</pre>
+<p>&nbsp;</p>
+<p><strong>13. Keluar dari Proses Unduh jika Melebihi Ukuran Tertentu Menggunakan wget -Q</strong></p>
+<p>Ketika kita ingin menghentikan proses unduh ketika melebihi 5MB, kita dapat menggunakan opsi berikut.</p>
+<pre>$ wget -Q5m -i FILE-WHICH-HAS-URLS</pre>
+<p><strong>Note:</strong> Kuota ini tidak akan berefek ketika kita melakukan unduh satu berkas. Itu terlepas dari ukuran kuota semuanya akan bisa diunduh ketika kita menentukan satu berkas. Kuota ini hanya berlaku untuk download rekursif.</p>
+<p>&nbsp;</p>
+<p><strong>14. Unduh hanya Jenis Berkas Tertentu Menggunakan wget -r -A</strong></p>
+<p>Kita dapat menggunakannya dengan beberapa skenario:</p>
+<ul>
+<li>Unduh semua gambar dari <em>website</em></li>
+<li>Unduh semua video dari<em> website</em></li>
+<li>Unduh semua PDF dari <em>website</em></li>
+</ul>
+<pre>$ wget -r -A.pdf http://url-to-webpage-with-pdfs/</pre>
+<p>&nbsp;</p>
+<p><strong>15. Unduh FTP dengan wget</strong></p>
+<p>Kita dapat menggunakan wget untuk menjalankan FTP.</p>
+<p><em>Anonymous</em> FTP menggunakan Wget.</p>
+<pre>$ wget ftp-url</pre>
+<p>FTP menggunakan wget dengan <em>username</em> dan <em>password</em> <em>authentication</em>.</p>
+<pre>$ wget --ftp-user=USERNAME --ftp-password=PASSWORD DOWNLOAD-URL</pre>
+<p>&nbsp;</p>
+<p><strong>16. Unduh Rekursif dengan wget</strong></p>
+<p>Kita bisa mengunduh berkas dalam satu folder dengan menggunakan wget.</p>
+<pre>$ wget -r -l 5 DOWNLOAD-URL</pre>
+<p>Note: Maksimal kedalaman level direktori adalah 5.</p>
+<p>&nbsp;</p>
+<p>Sumber : <a href="http://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples/" target="_blank">http://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples/</a></p>

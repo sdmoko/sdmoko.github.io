@@ -1,0 +1,119 @@
+---
+layout: post
+title: Nginx, Node.JS dan HTTPS dengan Let's Encrypt
+date: 2016-06-22 11:06:54.000000000 +07:00
+type: post
+published: true
+status: publish
+categories:
+- GNU/Linux
+- Networking
+- Security
+- Server
+tags:
+- Lets Encrypt
+- Nginx
+- node.JS
+- SSL
+- web
+meta:
+  _edit_last: '14518453'
+  geo_public: '0'
+  _thumbnail_id: '76'
+  _wpas_skip_8421200: '1'
+  _publicize_done_external: a:2:{s:8:"facebook";a:1:{i:8421200;s:38:"https://facebook.com/10207101392032972";}s:7:"twitter";a:1:{i:424287;s:52:"https://twitter.com/sdmoko/status/745468134304317446";}}
+  _publicize_job_id: '24068707276'
+  _publicize_done_10252545: '1'
+  _wpas_done_8421200: '1'
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=373331178&stype=M&topic=6151233799947563008&type=U&a=mbTb
+  _publicize_done_10252548: '1'
+  _wpas_done_10298656: '1'
+  publicize_google_plus_url: https://plus.google.com/+SyahDwiPrihatmoko/posts/JGUf3SHu1ZP
+  _publicize_done_10252560: '1'
+  _wpas_done_8421205: '1'
+  _publicize_done_10252563: '1'
+  _wpas_done_424287: '1'
+  publicize_twitter_user: sdmoko
+  _publicize_failed_10252570: O:13:"Keyring_Error":2:{s:6:"errors";a:1:{s:21:"keyring-request-error";a:1:{i:0;O:8:"WP_Error":2:{s:6:"errors";a:1:{s:19:"http_request_failed";a:1:{i:0;s:65:"Operation
+    timed out after 5000 milliseconds with 0 bytes received";}}s:10:"error_data";a:0:{}}}}s:10:"error_data";a:0:{}}
+  _wp_old_slug: nginx-node-js-and-https-dengan-lets-encrypt
+  _wpas_skip_8421205: '1'
+  _wpas_skip_424287: '1'
+  _wpas_skip_10298656: '1'
+  _wpas_skip_10298670: '1'
+author:
+  login: syahdwi
+  email: syahdwi92@gmail.com
+  display_name: Moko
+  first_name: ''
+  last_name: ''
+---
+<p>Jadi sebenernya saya sudah cukup sering untuk membuat sertifikat SSL dengan menggunakan Let's Encrypt, lalu mengkonfigurasikan sertifikat SSL dengan menggunakan Nginx yang berfungsi sebagai Reverse Proxy dari aplikasi yang berbasis Node.JS. Jadi tulisan ini sekaligus sebagai pengingat saya biar gampang nyarinya. Saya ini suka gampang lupa soalnya. :D</p>
+<p><strong>Memasang Let's Encrypt</strong></p>
+<p>Pada tulisan ini saya menggunakan Debian Jessie sebagai host saya. Aktifkan repositori jessie-backports karena sudah tersedia aplikasi klien untuk Let's Encrypt. Untuk mengaktifkannya bisa dilihat pada halaman <span style="color:#ff0000;"><a style="color:#ff0000;" href="https://backports.debian.org/Instructions/">ini</a></span>.<!--more--></p>
+<pre>sudo apt-get install certbot -t jessie-backports</pre>
+<p><strong>Membuat sertifikat SSL</strong></p>
+<p>Jalankan perintah berikut untuk mendapatkan sertifikat SSL. Pastikan untuk menyesuaikan domain website sesuai dengan yang digunakan. Sebagai catatan, kasus saya saat ini membuat sebuah sertifikat untuk 2 alamat website, karena mempunyai konfigurasi yang sama.</p>
+<pre><span class="n">certbot</span> <span class="n">certonly</span> <span class="o">--standalone</span> <span class="o">-</span><span class="n">d</span> <span class="n">www</span><span class="o">.</span><span class="n">example</span><span class="o">.</span><span class="n">com</span> <span class="o">-</span><span class="n">d</span> <span class="n">example</span><span class="o">.</span><span class="n">com</span></pre>
+<p>Jika sukses, sertifikat akan berada pada direktori <span style="color:#ff0000;">/etc/letsencrypt/live/example.com</span>.</p>
+<p><strong>Konfigurasi Nginx</strong></p>
+<p>Konfigurasi berkas untuk domain yang telah di buat tadi. Saya membuat berkas baru, yaitu <span style="color:#ff0000;">/etc/nginx/sites-available/example.com</span>.</p>
+<pre>server {
+
+    listen 80;
+    server_name example.com www.example.com;
+
+    # redirect all urls to https
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+ 
+    listen 443 ssl;
+
+    server_name example.com www.example.com;
+    # add Strict-Transport-Security to prevent man in the middle attacks
+    add_header Strict-Transport-Security "max-age=31536000";
+
+    # ssl certificate config
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/example.com/chain.pem;
+
+    error_log  /var/log/nginx/example-com.error.log;
+    access_log /var/log/nginx/example-com.access.log;
+
+    location / {
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-NginX-Proxy true;
+
+        proxy_pass http://127.0.0.1:your-port;
+        proxy_redirect off;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}</pre>
+<p>Beberapa catatan tentang konfigurasi di atas:</p>
+<ul>
+<li>Konfigurasi di atas berfungsi sebagai reverse proxy.</li>
+<li>Sesuaikan nama domain dan juga letak berkas sertifikat.</li>
+<li>Pastikan mengganti your-port dengan port yang sesuai.</li>
+<li>Otomatis melempar request http ke https.</li>
+</ul>
+<p>Buat <em>symbolic link </em>dari berkas yang dibuat di atas, agar aktif.</p>
+<pre>sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/example.com</pre>
+<p>Pastikan memuat ulang konfigurasi Nginx.</p>
+<pre>sudo systemctl restart nginx.service</pre>
+<p>Ujicoba Konfigurasi Nginx + SSL</p>
+<p><span style="color:#ff0000;"><a style="color:#ff0000;" href="https://www.ssllabs.com/">SSL Labs</a></span> menyediakan audit untuk SSL secara gratis dan lengkap.</p>
+<p>Selanjutnya ngoprek biar webnya lebih aman dan maknyus.</p>
+<p>Salam,<br />
+Moko yang lagi galau.</p>
+<p><strong>Referensi</strong></p>
+<p>[0] https://letsencrypt.org/<br />
+[1] https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04<br />
+[2] https://www.smalldata.tech/blog/nginx-nodejs-and-https-via-letsencrypt</p>

@@ -1,0 +1,73 @@
+---
+layout: post
+title: Install DNSCrypt di Debian Jessie
+date: 2015-07-14 10:39:25.000000000 +07:00
+type: post
+published: true
+status: publish
+categories:
+- GNU/Linux
+- Networking
+tags:
+- Bypass Speedy
+- DSNCrypt
+- Internet
+meta:
+  _edit_last: '14518453'
+  geo_public: '0'
+  _oembed_e6ef94391dd6c85364e1ac7dee3c75d6: "{{unknown}}"
+  publicize_linkedin_url: https://www.linkedin.com/updates?discuss=&scope=373331178&stype=M&topic=6026565440531083264&type=U&a=PR2F
+  _publicize_job_id: '12706095984'
+  _publicize_done_external: a:2:{s:8:"facebook";a:1:{i:8421200;s:38:"https://facebook.com/10204850280236584";}s:7:"twitter";a:1:{i:424287;s:52:"https://twitter.com/sdmoko/status/620799763319926784";}}
+  _publicize_done_10252545: '1'
+  _wpas_done_8421200: '1'
+  _publicize_done_10252548: '1'
+  _wpas_done_10298656: '1'
+  publicize_google_plus_url: https://plus.google.com/+SyahDwiPrihatmoko/posts/UdgupzAEbis
+  _publicize_done_10252560: '1'
+  _wpas_done_8421205: '1'
+  _publicize_done_10252563: '1'
+  _wpas_done_424287: '1'
+  publicize_twitter_user: sdmoko
+  publicize_path_id: 55a48475f5c671a55cc9d215
+  _publicize_done_10252570: '1'
+  _wpas_done_10298670: '1'
+  _wpas_skip_8421200: '1'
+  _wpas_skip_8421205: '1'
+  _wpas_skip_424287: '1'
+  _wpas_skip_10298656: '1'
+  _wpas_skip_10298670: '1'
+  _oembed_375faabde9239bdc7a210b3f00bbe9a7: "{{unknown}}"
+  _oembed_c8793a5d31a17edac7c349c7e63b80c6: "{{unknown}}"
+  _oembed_414487e3a0d99e2f10e0dc166f041377: "{{unknown}}"
+author:
+  login: syahdwi
+  email: syahdwi92@gmail.com
+  display_name: Moko
+  first_name: ''
+  last_name: ''
+---
+<p>Berhubung saya kebanyakan menggunakan akses internet dari Telkom dan terdapat pembatasan akses ke beberapa situs yang saya kunjungi, saya jadi mencari cara untuk ngakalinnya :D. Dapatlah sebuah cara yaitu menggunakan DNSCrypt.</p>
+<p>Pasang library paket yang dibutuhkan untuk memasang dan mengkompilasi DNSCrypt.</p>
+<pre>sudo apt update &amp;&amp; sudo apt install build-essential libtool automake libsodium13 pkg-config</pre>
+<p>Unduh versi terbaru DNSCrypt, saat ini versi 1.5.0<!--more--></p>
+<pre>wget http://download.dnscrypt.org/dnscrypt-proxy/dnscrypt-proxy-1.5.0.tar.gz</pre>
+<p>Ekstrak berkas yang telah diunduh</p>
+<pre>tar zxvf dnscrypt-proxy-1.5.0.tar.gz</pre>
+<p>Pindah ke direktori hasil ekstrak</p>
+<pre>cd dnscrypt-proxy-1.5.0</pre>
+<p>Kompilasi dan pasang DNSCrypt</p>
+<pre>./configure
+make
+sudo make install</pre>
+<p>Pastikan proses berjalan dengan normal.</p>
+<p>Jalankan DNSCrypt dengan perintah:</p>
+<pre class="perl">dnscrypt-proxy -R opendns --daemonize</pre>
+<p>Ubah berkas /etc/resolv.conf menjadi</p>
+<pre>nameserver 127.0.0.1</pre>
+<p>Selamat mencoba. Cheers.</p>
+<p>Referensi:</p>
+<ol>
+<li>http://jaranguda.com/install-dnscrypt-1-4-di-debian-7/</li>
+<li>http://mydarkerego.blogspot.com/2015/04/dirty-hacking-dnscrypt-so-it-works-on.html</li>
+</ol>

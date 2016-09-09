@@ -1,0 +1,55 @@
+---
+layout: page
+title: Perintah
+date: 2015-02-10 09:06:23.000000000 +07:00
+type: page
+published: true
+status: publish
+categories: []
+tags: []
+meta:
+  _edit_last: '14518453'
+  geo_public: '0'
+  _publicize_pending: '1'
+author:
+  login: syahdwi
+  email: syahdwi92@gmail.com
+  display_name: Moko
+  first_name: ''
+  last_name: ''
+---
+<p>Mengunduh seluruh berkas dalam satu folder</p>
+<pre><span class="pln">wget </span><span class="pun">-</span><span class="pln">r </span><span class="pun">--</span><span class="pln">no</span><span class="pun">-</span><span class="pln">parent url</span></pre>
+<p>Melanjutkan unduh berkas</p>
+<pre>wget -c url
+wget --continue url
+wget --continue [options] url</pre>
+<p>Mounting berkas iso</p>
+<pre>mount -o loop file.iso /media/target_folder</pre>
+<p>SSH Tunneling</p>
+<pre>ssh -l user url/ip -D xxxxx
+ex: ssh -l root 10.0.0.1 -D 65535</pre>
+<p>Melihat folder atau berkas dengan ukuran terbesar</p>
+<pre class="bash">du -a /ftpusers/tmp | sort -n -r | head -n 10
+du -cks * | sort -rn | head</pre>
+<p>Menggunakan screen</p>
+<pre>screen -S namascreen</pre>
+<p>Melepas screen</p>
+<pre>ctrl-a+d</pre>
+<p>Melihat screen</p>
+<pre>screen -ls</pre>
+<p>Melanjutkan screen</p>
+<pre>screen -r namascreen</pre>
+<p>Melanjutkan screen yang masih terpasang</p>
+<pre>screen -d namascreen</pre>
+<p>Rsync dengan sistem yang diremote</p>
+<pre>rsync -a ~/dir1 user@host:destination_directory
+rsync -a user@host:~/dir1 dir_to_sync_on_local
+rsync -azP <span class="highlight">source</span> <span class="highlight">destination</span></pre>
+<p>Menghentikan program berjalan</p>
+<pre>kill -15 PID
+killall -15 firefox
+
+*lakukan jika sudah terpaksa
+kill -9</pre>
+<p>&nbsp;</p>
