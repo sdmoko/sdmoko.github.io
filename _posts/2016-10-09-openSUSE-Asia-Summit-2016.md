@@ -37,7 +37,7 @@ One day trip to Borobudur temple, Prambanan temple and Malioboro.
 ![https://c8.staticflickr.com/6/5653/30123641575_8da06d0e4e_c.jpg](https://c8.staticflickr.com/6/5653/30123641575_8da06d0e4e_c.jpg)
 The man behind the conference, in the centre Edwin Zakaria.
 
-It's very great conference in the city which have so many history. You can see more pictures on [flickr](https://www.flickr.com/photos/62877692@N00/sets/72157673603471490). Video available at [YouTube](https://www.youtube.com/channel/UCFGB0Tsqn45oBfJyfi-tJVg).
+It's very great conference in the city which have so many history. You can see more pictures on [flickr](https://www.flickr.com/groups/3098731@N22/). Video available at [YouTube](https://www.youtube.com/channel/UCFGB0Tsqn45oBfJyfi-tJVg).
 
 Thank You and see you in another part of the world. Cheers :D
 
