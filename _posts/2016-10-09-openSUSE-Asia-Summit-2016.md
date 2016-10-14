@@ -26,7 +26,7 @@ My talk, about [Configuration Management your Infrastructure with openSUSE](http
 Me, myself and I
 
 ![https://c2.staticflickr.com/9/8414/30039331001_14e2b34f33_c.jpg](https://c2.staticflickr.com/9/8414/30039331001_14e2b34f33_c.jpg)
-Pejuang [GLiBogor](http://glibogor.or.id/) with Hatochan and Kukuh. From L to R: Alin, Ary, Moko, Hatochan, Levay, me, Dendy, Umul.
+Pejuang [GLiBogor](http://glibogor.or.id/) with Hatochan and Kukuh. From L to R: Alin, Ary, Me, Hatochan, Levay, Kukuh, Dendy, Umul.
 
 ![https://c1.staticflickr.com/6/5757/29833286560_1116048f8c_c.jpg](https://c1.staticflickr.com/6/5757/29833286560_1116048f8c_c.jpg)
 New friend. Top L to R: Max Lin, Fuminobu Takeyama, Kazuki Omo, Didit, Hatochan. Bottom L to R: Umul, Ary, Me, Irfan, Cahaya.
