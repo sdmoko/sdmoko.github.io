@@ -26,4 +26,4 @@ Regads,
 Moko with sleepy eyes.
 
 Reference:
-- https://forums.opensuse.org/showthread.php/526750-Docker-CE-not-supported-why[https://forums.opensuse.org/showthread.php/526750-Docker-CE-not-supported-why]
+- [https://forums.opensuse.org/showthread.php/526750-Docker-CE-not-supported-why](https://forums.opensuse.org/showthread.php/526750-Docker-CE-not-supported-why)
