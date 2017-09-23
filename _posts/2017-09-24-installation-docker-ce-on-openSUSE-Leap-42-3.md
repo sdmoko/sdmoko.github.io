@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Installation Docker CE on openSUSE LEap 42.3"
+title: "Installation Docker CE on openSUSE Leap 42.3"
 description: "Installation Docker CE"
 comments: true
 keywords: "docker, openSUSE, Leap"
@@ -26,4 +26,4 @@ Regads,
 Moko with sleepy eyes.
 
 Reference:
-- https://forums.opensuse.org/showthread.php/526750-Docker-CE-not-supported-why
+- https://forums.opensuse.org/showthread.php/526750-Docker-CE-not-supported-why[https://forums.opensuse.org/showthread.php/526750-Docker-CE-not-supported-why]
