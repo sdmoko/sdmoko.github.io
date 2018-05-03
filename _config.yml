@@ -92,3 +92,5 @@ defaults:
             layout: "post"
 
 exclude: [vendor] # For travis ci
+
+theme: jekyll-theme-slate
