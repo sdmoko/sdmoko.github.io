@@ -1,6 +1,6 @@
 # User Settings | Edit there as per required
 
-title: Lumos!
+title: Lumos! Sdmoko's notes.
 url: "http://blog.sdmoko.net"
 baseurl: ""
 
@@ -13,7 +13,7 @@ author: Syah Dwi Prihatmoko
 # This description will show up in google search results
 # (for index page) etc.
 description: >
-    Just a geek note for the forgotten one.
+    Just a note for the forgotten one.
 
 # This will what will show against &copy; in the footer
 copyright: sdmoko
@@ -39,7 +39,7 @@ comments: false
 # Note that about_footer should be true if you want
 # to see author information at the bottom of each post
 about_stub: >
-    Ordinary man
+    Pelupa, makanya harus mencatat.
 
 about_footer: true
 
