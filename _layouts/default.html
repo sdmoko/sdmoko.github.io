@@ -52,7 +52,6 @@
     {% else %}
         <meta name="twitter:image" content="{{ site.profile_picture }}">
     {% endif %}
-    {% include google-analytics.html %}
 </head>
 <body>
     <div class="wrapper">
@@ -80,5 +79,6 @@
         anchors.add()
         anchors.remove('.post-title')
         </script>
-    {% endif %}
+    {% endif %} 
+    {% include analytics.html %}
 </body>
