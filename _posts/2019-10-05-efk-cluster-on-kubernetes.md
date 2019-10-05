@@ -72,7 +72,6 @@ kubectl apply -f 06-elasticsearch_statefulset.yaml
 7. Then deploy Kibana and Fluentd to make it a complete logging stack. Where we can visualize the data.
 ```
 kubectl apply -f 07-kibana.yaml
-
 kubectl apply -f 08-fluentd.yaml
 ```
 
